@@ -117,21 +117,3 @@ flake8        # PEP 8
 GitHub Actions runs both on every push, on Python 3.9 and 3.12. The
 end-to-end tests drive the real menu with scripted keystrokes.
 
-## What changed from the original
-
-The first version worked on the happy path. Reviewing it turned up bugs, each
-now fixed and covered by a test:
-
-| Problem in the original | Now |
-|---|---|
-| Reloading added every shoe a second time | Reload replaces the stock |
-| Typing text for a cost or quantity crashed | Asks again, with a clear message |
-| New shoes were lost when the program closed | Saved to the file straight away |
-| A blank line in the file stopped loading, and the next save wiped the rest | Blank lines ignored; nothing is lost |
-| A new shoe with an existing code overwrote the other shoe | Refused |
-| Search was case-sensitive | `sku7` finds `SKU7` |
-| Only worked when run from its own folder | Finds its file wherever it runs |
-| Ctrl+D at the menu printed a traceback | Exits cleanly |
-| Saving rewrote costs (2700.0 became 2700) | Costs are kept as written |
-| A negative restock removed stock | Must be above zero |
-| Needed the `tabulate` package | Aligned table built in, no dependencies |
